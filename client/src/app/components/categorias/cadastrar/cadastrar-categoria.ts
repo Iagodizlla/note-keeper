@@ -1,7 +1,7 @@
 import { finalize } from 'rxjs';
 
 import { Component, inject } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -30,14 +30,14 @@ export class CadastrarCategoria {
   protected readonly categoriaService = inject(CategoriaService);
   protected readonly router = inject(Router);
 
-  protected categoriaForm = this.formBuilder.group({
+  protected categoriaForm: FormGroup = this.formBuilder.group({
     titulo: [''],
   });
 
   public cadastrar() {
     if (this.categoriaForm.invalid) return;
 
-    const categoriaModel = this.categoriaForm.value as CadastrarCategoriaModel;
+    const categoriaModel: CadastrarCategoriaModel = this.categoriaForm.value;
 
     this.categoriaService
       .cadastrar(categoriaModel)

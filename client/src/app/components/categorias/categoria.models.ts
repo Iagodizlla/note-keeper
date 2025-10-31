@@ -14,3 +14,16 @@ export interface CadastrarCategoriaModel {
 export interface CadastrarCategoriaResponseModel {
   id: string;
 }
+
+export interface EditarCategoriaModel {
+  titulo: string;
+}
+
+export interface EditarCategoriaResponseModel {
+  titulo: string;
+}
+
+export interface DetalhesCategoriaModel {
+  id: string;
+  titulo: string;
+}

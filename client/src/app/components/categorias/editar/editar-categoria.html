@@ -1,0 +1,44 @@
+<section class="row justify-content-center">
+  <div class="col-md-11 col-xl-8">
+    <h2>Edição de Categoria</h2>
+    <hr />
+
+    <mat-card class="p-2">
+      @if (categoria$ | async) {
+        <form [formGroup]="categoriaForm" (ngSubmit)="editar()">
+          <mat-card-header>
+            <mat-card-title>Preencha o formulário de edição</mat-card-title>
+          </mat-card-header>
+
+          <mat-card-content class="mt-5">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Título da Categoria</mat-label>
+              <input formControlName="titulo" matInput type="text" />
+
+              @if (titulo?.errors?.['required']) {
+                <mat-error>O título da categoria é obrigatório.</mat-error>
+              }
+
+              @if (titulo?.errors?.['minlength']) {
+                <mat-error>O título da categoria deve conter no mínimo 3 caracteres.</mat-error>
+              }
+            </mat-form-field>
+          </mat-card-content>
+
+          <mat-card-actions align="end">
+            <a mat-stroked-button routerLink="/categorias">Voltar</a>
+            <button
+              type="submit"
+              [disabled]="categoriaForm.invalid"
+              mat-flat-button
+              class="ms-2 px-5"
+            >
+              <mat-icon>check</mat-icon>
+              Concluir
+            </button>
+          </mat-card-actions>
+        </form>
+      }
+    </mat-card>
+  </div>
+</section>

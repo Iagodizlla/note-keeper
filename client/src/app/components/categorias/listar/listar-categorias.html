@@ -1,9 +1,9 @@
 <section class="row justify-content-center">
-  <div class="col-lg-8">
+  <div class="col-md-11 col-xl-8">
     <h2>Listagem de Categorias</h2>
 
     <div class="row g-1 mt-3">
-      <a mat-flat-button class="col-lg-2" routerLink="cadastrar">
+      <a mat-flat-button class="col-md-6 col-xl-2" routerLink="cadastrar">
         <mat-icon>add</mat-icon>
         Cadastrar
       </a>
@@ -13,7 +13,7 @@
 
     <div class="row g-3">
       @for (categoria of categorias$ | async; track $index) {
-        <div class="col-lg-4">
+        <div class="col-md-6 col-xl-4">
           <mat-card class="p-1">
             <mat-card-header>
               <mat-card-title>{{ categoria.titulo }}</mat-card-title>

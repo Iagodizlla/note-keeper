@@ -6,7 +6,7 @@ import { provideNotifications } from './components/shared/notificacao/notificaca
 import { provideAuth } from './components/auth/auth.provider';
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'auth/registro', pathMatch: 'full' },
+  { path: '', redirectTo: 'auth/login', pathMatch: 'full' },
   {
     path: 'auth',
     loadChildren: () => import('./components/auth/auth.routes').then((r) => r.authRoutes),

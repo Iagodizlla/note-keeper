@@ -1,0 +1,50 @@
+<section class="row justify-content-center">
+  <div class="col-md-11 col-lg-4 col-xl-3 py-5">
+    <h2>Login de Usuário</h2>
+    <hr />
+
+    <mat-card class="p-2">
+      <form [formGroup]="loginForm" (ngSubmit)="login()">
+        <mat-card-header>
+          <mat-card-title>Preencha o formulário de login</mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content class="mt-5">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Email</mat-label>
+            <input formControlName="email" matInput type="email" autocomplete="email" />
+
+            @if (email?.errors?.['required']) {
+              <mat-error>O email é obrigatório.</mat-error>
+            }
+
+            @if (email?.errors?.['email']) {
+              <mat-error>O email deve seguir o padrão nome@provedor.com.</mat-error>
+            }
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="w-100 mt-2">
+            <mat-label>Senha</mat-label>
+            <input formControlName="senha" matInput type="password" autocomplete="current-password" />
+
+            @if (senha?.errors?.['required']) {
+              <mat-error>A senha é obrigatória.</mat-error>
+            }
+
+            @if (senha?.errors?.['minlength']) {
+              <mat-error>A senha deve conter no mínimo 6 caracteres.</mat-error>
+            }
+          </mat-form-field>
+        </mat-card-content>
+
+        <mat-card-actions align="end">
+          <a mat-text-button routerLink="/auth/registro">Ainda não tenho uma conta</a>
+          <button type="submit" [disabled]="loginForm.invalid" mat-flat-button class="ms-3 px-5">
+            <mat-icon>arrow_forward</mat-icon>
+            Entrar
+          </button>
+        </mat-card-actions>
+      </form>
+    </mat-card>
+  </div>
+</section>

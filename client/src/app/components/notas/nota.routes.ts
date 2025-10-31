@@ -4,6 +4,7 @@ import { ActivatedRouteSnapshot, Routes } from '@angular/router';
 import { CategoriaService } from '../categorias/categoria.service';
 import { CadastrarNota } from './cadastrar/cadastrar-nota';
 import { EditarNota } from './editar/editar-nota';
+import { ExcluirNota } from './excluir/excluir-nota';
 import { ListarNotas } from './listar/listar-notas';
 import { NotaService } from './nota.service';
 
@@ -43,6 +44,11 @@ export const notaRoutes: Routes = [
         path: 'editar/:id',
         component: EditarNota,
         resolve: { nota: detalhesNotaResolver, categorias: listagemCategoriasResolver },
+      },
+      {
+        path: 'excluir/:id',
+        component: ExcluirNota,
+        resolve: { nota: detalhesNotaResolver },
       },
     ],
     providers: [NotaService, CategoriaService],

@@ -1,0 +1,37 @@
+<section class="row justify-content-center">
+  <div class="col-lg-8">
+    <h2>Listagem de Categorias</h2>
+
+    <div class="row g-1 mt-3">
+      <a mat-flat-button class="col-lg-2" routerLink="cadastrar">
+        <mat-icon>add</mat-icon>
+        Cadastrar
+      </a>
+    </div>
+
+    <hr />
+
+    <div class="row g-3">
+      @for (categoria of categorias$ | async; track $index) {
+        <div class="col-lg-4">
+          <mat-card class="p-1">
+            <mat-card-header>
+              <mat-card-title>{{ categoria.titulo }}</mat-card-title>
+            </mat-card-header>
+
+            <mat-card-content style="min-height: 40px"></mat-card-content>
+
+            <mat-card-actions align="end">
+              <a [routerLink]="['editar', categoria.id]" mat-icon-button
+                ><mat-icon>edit</mat-icon></a
+              >
+              <a [routerLink]="['excluir', categoria.id]" mat-icon-button class="ms-1"
+                ><mat-icon>delete</mat-icon></a
+              >
+            </mat-card-actions>
+          </mat-card>
+        </div>
+      }
+    </div>
+  </div>
+</section>

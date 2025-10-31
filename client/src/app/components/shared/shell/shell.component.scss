@@ -1,7 +1,5 @@
 .sidenav-container {
   height: 100%;
-
-  background-color: #ececec;
 }
 
 .sidenav {
@@ -10,6 +8,8 @@
   border-top-right-radius: 0;
 
   padding: 0 10px;
+
+  background-color: var(--mat-sys-surface-container-low);
 }
 
 .sidenav .mat-toolbar {
@@ -20,4 +20,6 @@
   position: sticky;
   top: 0;
   z-index: 1;
+
+  background-color: var(--mat-sys-surface-container-low);
 }

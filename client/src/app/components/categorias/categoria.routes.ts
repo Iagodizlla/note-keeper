@@ -1,5 +1,9 @@
 import { Routes } from '@angular/router';
 
 import { ListarCategorias } from './listar/listar-categorias';
+import { CadastrarCategoria } from './cadastrar/cadastrar-categoria';
 
-export const categoriaRoutes: Routes = [{ path: '', component: ListarCategorias }];
+export const categoriaRoutes: Routes = [
+  { path: '', component: ListarCategorias },
+  { path: 'cadastrar', component: CadastrarCategoria },
+];

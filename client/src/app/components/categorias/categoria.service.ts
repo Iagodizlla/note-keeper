@@ -10,9 +10,7 @@ import {
     ListagemCategoriasModel,
 } from './categoria.models';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class CategoriaService {
   private readonly http = inject(HttpClient);
 
@@ -38,7 +36,7 @@ export class CategoriaService {
 
     return this.http.delete<null>(urlCompleto);
   }
-  
+
   public selecionarPorId(id: string): Observable<DetalhesCategoriaModel> {
     const urlCompleto = `${this.apiUrl}/${id}`;
 

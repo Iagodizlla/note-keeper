@@ -27,18 +27,24 @@ const detalhesCategoriaResolver = (route: ActivatedRouteSnapshot) => {
 export const categoriaRoutes: Routes = [
   {
     path: '',
-    component: ListarCategorias,
-    resolve: { categorias: listagemCategoriasResolver },
-  },
-  { path: 'cadastrar', component: CadastrarCategoria },
-  {
-    path: 'editar/:id',
-    component: EditarCategoria,
-    resolve: { categoria: detalhesCategoriaResolver },
-  },
-  {
-    path: 'excluir/:id',
-    component: ExcluirCategoria,
-    resolve: { categoria: detalhesCategoriaResolver },
+    children: [
+      {
+        path: '',
+        component: ListarCategorias,
+        resolve: { categorias: listagemCategoriasResolver },
+      },
+      { path: 'cadastrar', component: CadastrarCategoria },
+      {
+        path: 'editar/:id',
+        component: EditarCategoria,
+        resolve: { categoria: detalhesCategoriaResolver },
+      },
+      {
+        path: 'excluir/:id',
+        component: ExcluirCategoria,
+        resolve: { categoria: detalhesCategoriaResolver },
+      },
+    ],
+    providers: [CategoriaService]
   },
 ];

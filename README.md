@@ -12,11 +12,13 @@
 
 ### Servidor
 
-Para executar a aplicação na pasta `server`, é necessário incluir dentro do projeto C# **NoteKeeper.WebApi** uma variável de ambiente do chamada `SQL_CONNECTION_STRING`:
+Para executar a aplicação na pasta `server`, é necessário incluir dentro do projeto C# **NoteKeeper.WebApi** as seguintes variáveis de ambiente:
 
 ```json
 {
-  "SQL_CONNECTION_STRING": "Data Source=(LocalDB)\\MSSQLLocalDB;Initial Catalog=NoteKeeperDb;Integrated Security=True"
+  "SQL_CONNECTION_STRING": "Data Source=(LocalDB)\\MSSQLLocalDB;Initial Catalog=NoteKeeperDb;Integrated Security=True",
+  "JWT_GENERATION_KEY": "SuaChaveSuperSecretaDe32Bytes",
+  "JWT_AUDIENCE_DOMAIN": "https://localhost:4200"
 }
 ```
 A variável de ambiente pode se incluída de diversas maneiras, inclusive durante a execução do projeto pelo terminal. Para conveniência, utilizamos **UserSecrets**.

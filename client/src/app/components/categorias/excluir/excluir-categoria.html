@@ -1,0 +1,31 @@
+<section class="row justify-content-center">
+  <div class="col-md-11 col-xl-8">
+    <h2>Exclusão de Categoria</h2>
+    <hr />
+
+    <mat-card class="p-2">
+      @if (categoria$ | async; as categoria) {
+        <form (ngSubmit)="excluir()">
+          <mat-card-header>
+            <mat-card-title>Confirme a exclusão do registro</mat-card-title>
+          </mat-card-header>
+
+          <mat-card-content class="mt-3">
+            <span class="fs-6"
+              >Você deseja realmente excluir o registro "{{ categoria.titulo }}"? Esta ação é
+              irreversível...</span
+            >
+          </mat-card-content>
+
+          <mat-card-actions align="end">
+            <a mat-stroked-button routerLink="/categorias">Voltar</a>
+            <button type="submit" mat-flat-button class="ms-2 px-5">
+              <mat-icon>check</mat-icon>
+              Confirmar
+            </button>
+          </mat-card-actions>
+        </form>
+      }
+    </mat-card>
+  </div>
+</section>

@@ -1,7 +1,9 @@
 import { provideHttpClient } from '@angular/common/http';
 import { ApplicationConfig, provideBrowserGlobalErrorListeners, provideZonelessChangeDetection } from '@angular/core';
 import { provideRouter, Routes } from '@angular/router';
+
 import { provideNotifications } from './components/shared/notificacao/notificacao.provider';
+import { provideAuth } from './components/auth/auth.routes';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'inicio', pathMatch: 'full' },
@@ -27,5 +29,6 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideHttpClient(),
     provideNotifications(),
+    provideAuth(),
   ]
 };

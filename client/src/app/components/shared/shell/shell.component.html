@@ -46,11 +46,23 @@
         >
           <mat-icon aria-label="Ícone ativar barra de navegação lateral">menu</mat-icon>
         </button>
-      }
-      <span class="d-flex align-items-center gap-2">
+
+        <span class="d-flex align-items-center gap-2">
           <mat-icon>collections_bookmark</mat-icon>
           <span class="fs-4">NoteKeeper</span>
         </span>
+      }
+      <button mat-raised-button [matMenuTriggerFor]="opcoesUsuario" class="ms-auto">
+        <mat-icon>person</mat-icon>
+        {{ usuarioAutenticado.nomeCompleto }}
+      </button>
+
+      <mat-menu #opcoesUsuario="matMenu">
+        <button mat-menu-item style="min-width: 160px" (click)="logoutRequisitado.emit()">
+          <mat-icon>arrow_backwards</mat-icon>
+          Logout
+        </button>
+      </mat-menu>
     </mat-toolbar>
     <!-- Add Content Here -->
      <div class="container-fluid py-3">

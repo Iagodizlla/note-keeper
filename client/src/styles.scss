@@ -34,3 +34,47 @@ body {
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+// Material Override / Custom
+.classroom-card {
+  border-radius: 16px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+
+  .card-hero {
+    position: relative;
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 5;
+    background: center / cover no-repeat var(--hero-url, url('/img/card-header.jpg'));
+    cursor: pointer;
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0.6) 100%);
+    }
+
+    &__title {
+      position: absolute;
+      left: 16px;
+      top: 16px;
+      color: #fff;
+      z-index: 1;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    }
+  }
+
+  mat-card-content {
+    min-height: 150px;
+  }
+
+  .card-actions {
+    padding: 4px 8px;
+    .spacer {
+      flex: 1 1 auto;
+    }
+  }
+}

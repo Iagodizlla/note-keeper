@@ -1,7 +1,4 @@
-import { EnvironmentProviders, makeEnvironmentProviders } from '@angular/core';
+import { Routes } from '@angular/router';
+import { Registro } from './registro/registro';
 
-import { AuthService } from './auth.service';
-
-export const provideAuth = (): EnvironmentProviders => {
-  return makeEnvironmentProviders([AuthService]);
-};
+export const authRoutes: Routes = [{ path: 'registro', component: Registro }];

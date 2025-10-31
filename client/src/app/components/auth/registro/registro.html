@@ -1,0 +1,76 @@
+<section class="row justify-content-center">
+  <div class="col-md-11 col-lg-4 py-5">
+    <h2>Registro de Usuário</h2>
+    <hr />
+
+    <mat-card class="p-2">
+      <form [formGroup]="registroForm" (ngSubmit)="registro()">
+        <mat-card-header>
+          <mat-card-title>Preencha o formulário de registro</mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content class="mt-5">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Nome Completo</mat-label>
+            <input formControlName="nomeCompleto" matInput type="text" autocomplete="name"/>
+
+            @if (nomeCompleto?.errors?.['required']) {
+              <mat-error>O nome é obrigatório.</mat-error>
+            }
+
+            @if (nomeCompleto?.errors?.['minlength']) {
+              <mat-error>O nome deve conter no mínimo 3 caracteres.</mat-error>
+            }
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="w-100 mt-2">
+            <mat-label>Email</mat-label>
+            <input formControlName="email" matInput type="email" autocomplete="email"/>
+
+            @if (email?.errors?.['required']) {
+              <mat-error>O email é obrigatório.</mat-error>
+            }
+
+            @if (email?.errors?.['email']) {
+              <mat-error>O email deve seguir o padrão nome@provedor.com.</mat-error>
+            }
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="w-100 mt-2">
+            <mat-label>Senha</mat-label>
+            <input formControlName="senha" matInput type="password" autocomplete="new-password" />
+
+            @if (senha?.errors?.['required']) {
+              <mat-error>A senha é obrigatória.</mat-error>
+            }
+
+            @if (senha?.errors?.['minlength']) {
+              <mat-error>A senha deve conter no mínimo 6 caracteres.</mat-error>
+            }
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="w-100 mt-2">
+            <mat-label>Confirmar Senha</mat-label>
+            <input formControlName="confirmarSenha" matInput type="password" autocomplete="new-password" />
+
+            @if (confirmarSenha?.errors?.['required']) {
+              <mat-error>A confirmação de senha é obrigatória.</mat-error>
+            }
+
+            @if (confirmarSenha?.errors?.['minlength']) {
+              <mat-error>A confirmação de senha deve conter no mínimo 6 caracteres.</mat-error>
+            }
+          </mat-form-field>
+        </mat-card-content>
+
+        <mat-card-actions align="end">
+          <a mat-text-button routerLink="/auth/login">Já tenho uma conta</a>
+          <button type="submit" [disabled]="registroForm.invalid" mat-flat-button class="ms-3 px-5">
+            <mat-icon>arrow_forward</mat-icon>
+            Registrar
+          </button>
+        </mat-card-actions>
+      </form>
+    </mat-card>
+  </div>
+</section>

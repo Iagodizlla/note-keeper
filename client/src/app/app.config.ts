@@ -3,10 +3,14 @@ import { ApplicationConfig, provideBrowserGlobalErrorListeners, provideZonelessC
 import { provideRouter, Routes } from '@angular/router';
 
 import { provideNotifications } from './components/shared/notificacao/notificacao.provider';
-import { provideAuth } from './components/auth/auth.routes';
+import { provideAuth } from './components/auth/auth.provider';
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'inicio', pathMatch: 'full' },
+  { path: '', redirectTo: 'auth/registro', pathMatch: 'full' },
+  {
+    path: 'auth',
+    loadChildren: () => import('./components/auth/auth.routes').then((r) => r.authRoutes),
+  },
   {
     path: 'inicio',
     loadComponent: () => import('./components/inicio/inicio').then((c) => c.Inicio),

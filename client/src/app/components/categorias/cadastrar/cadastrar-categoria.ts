@@ -1,7 +1,7 @@
 import { finalize } from 'rxjs';
 
 import { Component, inject } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -31,8 +31,12 @@ export class CadastrarCategoria {
   protected readonly router = inject(Router);
 
   protected categoriaForm: FormGroup = this.formBuilder.group({
-    titulo: [''],
+    titulo: ['', [Validators.required, Validators.minLength(3)]],
   });
+
+  get titulo() {
+    return this.categoriaForm.get('titulo');
+  }
 
   public cadastrar() {
     if (this.categoriaForm.invalid) return;

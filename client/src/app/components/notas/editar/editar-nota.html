@@ -1,0 +1,57 @@
+<section class="row justify-content-center">
+  <div class="col-md-11 col-xl-8">
+    <h2>Edição de Nota</h2>
+    <hr />
+
+    <mat-card class="p-2">
+      @if (nota$ | async) {
+        <form [formGroup]="notaForm" (ngSubmit)="editar()">
+          <mat-card-header>
+            <mat-card-title>Preencha o formulário de edição</mat-card-title>
+          </mat-card-header>
+
+          <mat-card-content class="mt-5">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Título da Nota</mat-label>
+              <input formControlName="titulo" matInput type="text" />
+
+              @if (titulo?.errors?.['required']) {
+                <mat-error>O título da nota é obrigatório.</mat-error>
+              }
+
+              @if (titulo?.errors?.['minlength']) {
+                <mat-error>O título da nota deve conter no mínimo 3 caracteres.</mat-error>
+              }
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="w-100 mt-2">
+              <mat-label>Conteúdo da Nota</mat-label>
+              <textarea formControlName="conteudo" matInput></textarea>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="w-100 mt-2">
+              <mat-label>Categoria</mat-label>
+              <mat-select formControlName="categoriaId">
+                @for (categoria of categorias$ | async; track categoria.id) {
+                  <mat-option [value]="categoria.id">{{ categoria.titulo }}</mat-option>
+                }
+              </mat-select>
+
+              @if (categoriaId?.errors?.['required']) {
+                <mat-error>A categoria da nota é obrigatória.</mat-error>
+              }
+            </mat-form-field>
+          </mat-card-content>
+
+          <mat-card-actions align="end">
+            <a mat-stroked-button routerLink="/notas">Voltar</a>
+            <button type="submit" [disabled]="notaForm.invalid" mat-flat-button class="ms-2 px-5">
+              <mat-icon>check</mat-icon>
+              Concluir
+            </button>
+          </mat-card-actions>
+        </form>
+      }
+    </mat-card>
+  </div>
+</section>

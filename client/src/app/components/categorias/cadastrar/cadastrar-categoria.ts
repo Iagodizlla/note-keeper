@@ -1,4 +1,4 @@
-import { finalize } from 'rxjs';
+import { Observer } from 'rxjs';
 
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -9,7 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { Router, RouterLink } from '@angular/router';
 
-import { CadastrarCategoriaModel } from '../categoria.models';
+import { CadastrarCategoriaModel, CadastrarCategoriaResponseModel } from '../categoria.models';
 import { CategoriaService } from '../categoria.service';
 
 @Component({
@@ -43,9 +43,12 @@ export class CadastrarCategoria {
 
     const categoriaModel: CadastrarCategoriaModel = this.categoriaForm.value;
 
-    this.categoriaService
-      .cadastrar(categoriaModel)
-      .pipe(finalize(() => this.router.navigate(['/categorias'])))
-      .subscribe((res) => console.log(res));
+    const cadastroObserver: Observer<CadastrarCategoriaResponseModel> = {
+      next: (res) => console.log(res),
+      error: (err) => console.error('Aconteceu um erro na observable:', err),
+      complete: () => this.router.navigate(['/categorias']),
+    };
+
+    this.categoriaService.cadastrar(categoriaModel).subscribe(cadastroObserver);
   }
 }

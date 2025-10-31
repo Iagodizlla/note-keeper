@@ -11,7 +11,9 @@ import { MatInputModule } from '@angular/material/input';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 
 import { NotificacaoService } from '../../shared/notificacao/notificacao.service';
-import { EditarCategoriaModel, EditarCategoriaResponseModel } from '../categoria.models';
+import {
+    DetalhesCategoriaModel, EditarCategoriaModel, EditarCategoriaResponseModel
+} from '../categoria.models';
 import { CategoriaService } from '../categoria.service';
 
 @Component({
@@ -43,10 +45,9 @@ export class EditarCategoria {
     return this.categoriaForm.get('titulo');
   }
 
-  protected readonly categoria$ = this.route.paramMap.pipe(
-    filter((params) => params.has('id')),
-    map((params) => params.get('id')!),
-    switchMap((id) => this.categoriaService.selecionarPorId(id)),
+  protected readonly categoria$ = this.route.data.pipe(
+    filter((data) => data['categoria']),
+    map((data) => data['categoria'] as DetalhesCategoriaModel),
     tap((categoria) => this.categoriaForm.patchValue(categoria)),
     shareReplay({ bufferSize: 1, refCount: true }),
   );

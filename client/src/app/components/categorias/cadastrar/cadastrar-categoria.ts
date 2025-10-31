@@ -9,6 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { Router, RouterLink } from '@angular/router';
 
+import { NotificacaoService } from '../../shared/notificacao/notificacao.service';
 import { CadastrarCategoriaModel, CadastrarCategoriaResponseModel } from '../categoria.models';
 import { CategoriaService } from '../categoria.service';
 
@@ -29,6 +30,7 @@ export class CadastrarCategoria {
   protected readonly formBuilder = inject(FormBuilder);
   protected readonly categoriaService = inject(CategoriaService);
   protected readonly router = inject(Router);
+  protected readonly notificacaoService = inject(NotificacaoService);
 
   protected categoriaForm: FormGroup = this.formBuilder.group({
     titulo: ['', [Validators.required, Validators.minLength(3)]],
@@ -44,8 +46,11 @@ export class CadastrarCategoria {
     const categoriaModel: CadastrarCategoriaModel = this.categoriaForm.value;
 
     const cadastroObserver: Observer<CadastrarCategoriaResponseModel> = {
-      next: (res) => console.log(res),
-      error: (err) => console.error('Aconteceu um erro na observable:', err),
+      next: () =>
+        this.notificacaoService.sucesso(
+          `O registro "${categoriaModel.titulo}" foi cadastrado com sucesso!`,
+        ),
+      error: (err) => this.notificacaoService.erro(err.message),
       complete: () => this.router.navigate(['/categorias']),
     };
 

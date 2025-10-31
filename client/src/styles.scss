@@ -17,6 +17,61 @@ html {
   );
 }
 
+.notificacao-sucesso {
+    @include mat.snack-bar-overrides(
+      (
+        button-color: var(--mat-sys-surface),
+        container-color: var(--mat-sys-primary),
+      )
+    );
+  }
+
+  .notificacao-aviso {
+    @include mat.snack-bar-overrides(
+      (
+        button-color: var(--mat-sys-primary),
+        container-color: var(--mat-sys-surface),
+        supporting-text-color: var(--mat-sys-on-surface),
+      )
+    );
+  }
+
+  .notificacao-erro {
+    @include mat.snack-bar-overrides(
+      (
+        button-color: var(--mat-sys-surface),
+        container-color: var(--mat-sys-error),
+      )
+    );
+    .notificacao-sucesso {
+    @include mat.snack-bar-overrides(
+      (
+        button-color: var(--mat-sys-surface),
+        container-color: var(--mat-sys-primary),
+      )
+    );
+  }
+
+  .notificacao-aviso {
+    @include mat.snack-bar-overrides(
+      (
+        button-color: var(--mat-sys-primary),
+        container-color: var(--mat-sys-surface),
+        supporting-text-color: var(--mat-sys-on-surface),
+      )
+    );
+  }
+
+  .notificacao-erro {
+    @include mat.snack-bar-overrides(
+      (
+        button-color: var(--mat-sys-surface),
+        container-color: var(--mat-sys-error),
+      )
+    );
+  }
+}
+  
 body {
   // Default the application to a light color theme. This can be changed to
   // `dark` to enable the dark color theme, or to `light dark` to defer to the

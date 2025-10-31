@@ -14,6 +14,10 @@ export const routes: Routes = [
     loadChildren: () =>
       import('./components/categorias/categoria.routes').then((r) => r.categoriaRoutes),
   },
+  {
+    path: 'notas',
+    loadChildren: () => import('./components/notas/nota.routes').then((r) => r.notaRoutes),
+  },
 ];
 
 export const appConfig: ApplicationConfig = {

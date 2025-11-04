@@ -1,4 +1,4 @@
-import { map } from 'rxjs';
+import { map, take } from 'rxjs';
 import { inject, ApplicationConfig, provideBrowserGlobalErrorListeners, provideZonelessChangeDetection } from '@angular/core';
 import { CanActivateFn, provideRouter, Router, Routes } from '@angular/router';
 
@@ -12,6 +12,7 @@ const usuarioDesconhecidoGuard: CanActivateFn = () => {
   const router = inject(Router);
 
   return authService.accessToken$.pipe(
+    take(1),
     map((token) => (!token ? true : router.createUrlTree(['/inicio']))),
   );
 };
@@ -21,6 +22,7 @@ const usuarioAutenticadoGuard: CanActivateFn = () => {
   const router = inject(Router);
 
   return authService.accessToken$.pipe(
+    take(1),
     map((token) => (token ? true : router.createUrlTree(['/auth/login']))),
   );
 };

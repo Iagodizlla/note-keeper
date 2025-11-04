@@ -24,7 +24,7 @@ public class AccessTokenProvider
 
         audienciaValida = config["JWT_AUDIENCE_DOMAIN"]!;
 
-        expiracaoJwt = DateTime.UtcNow.AddMinutes(5);
+        expiracaoJwt = DateTime.UtcNow.AddMinutes(1);
     }
 
     public AccessToken GerarAccessToken(Usuario usuario)

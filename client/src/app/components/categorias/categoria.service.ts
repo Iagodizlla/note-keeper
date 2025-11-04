@@ -4,7 +4,6 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 
 import { environment } from '../../../environments/environment';
-import { obterOpcoesHeaderAutorizacao } from '../../util/obter-opcoes-header-autorizacao';
 import { AuthService } from '../auth/auth.service';
 import {
     CadastrarCategoriaModel, CadastrarCategoriaResponseModel, DetalhesCategoriaModel,
@@ -22,11 +21,7 @@ export class CategoriaService {
   public cadastrar(
     categoriaModel: CadastrarCategoriaModel,
   ): Observable<CadastrarCategoriaResponseModel> {
-    return this.http.post<CadastrarCategoriaResponseModel>(
-      this.apiUrl,
-      categoriaModel,
-      obterOpcoesHeaderAutorizacao(this.authService.accessTokenSubject$.getValue()),
-    );
+    return this.http.post<CadastrarCategoriaResponseModel>(this.apiUrl, categoriaModel);
   }
 
    public editar(
@@ -35,37 +30,24 @@ export class CategoriaService {
   ): Observable<EditarCategoriaResponseModel> {
     const urlCompleto = `${this.apiUrl}/${id}`;
 
-    return this.http.put<EditarCategoriaResponseModel>(
-      urlCompleto,
-      editarCategoriaModel,
-      obterOpcoesHeaderAutorizacao(this.authService.accessTokenSubject$.getValue()),
-    );
+    return this.http.put<EditarCategoriaResponseModel>(urlCompleto, editarCategoriaModel);
   }
 
   public excluir(id: string): Observable<null> {
     const urlCompleto = `${this.apiUrl}/${id}`;
 
-    return this.http.delete<null>(
-      urlCompleto,
-      obterOpcoesHeaderAutorizacao(this.authService.accessTokenSubject$.getValue()),
-    );
+    return this.http.delete<null>(urlCompleto);
   }
 
   public selecionarPorId(id: string): Observable<DetalhesCategoriaModel> {
     const urlCompleto = `${this.apiUrl}/${id}`;
 
-    return this.http.get<DetalhesCategoriaModel>(
-      urlCompleto,
-      obterOpcoesHeaderAutorizacao(this.authService.accessTokenSubject$.getValue()),
-    );
+    return this.http.get<DetalhesCategoriaModel>(urlCompleto);
   }
 
   public selecionarTodas(): Observable<ListagemCategoriasModel[]> {
     return this.http
-      .get<ListagemCategoriasApiResponse>(
-        this.apiUrl,
-        obterOpcoesHeaderAutorizacao(this.authService.accessTokenSubject$.getValue()),
-      )
+      .get<ListagemCategoriasApiResponse>(this.apiUrl)
       .pipe(map((res) => res.registros));
   }
 }

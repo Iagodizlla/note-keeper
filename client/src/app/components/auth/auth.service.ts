@@ -24,7 +24,7 @@ export class AuthService {
 
     if (!accessToken) return of(undefined);
 
-    const valido = new Date(accessToken.expiracao) > new Date(); // DateTime.Now
+    const valido = accessToken.expiracao > new Date(); // DateTime.Now
 
     if (!valido) return of(undefined);
 

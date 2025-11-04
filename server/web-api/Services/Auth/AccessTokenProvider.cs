@@ -24,7 +24,7 @@ public class AccessTokenProvider
 
         audienciaValida = config["JWT_AUDIENCE_DOMAIN"]!;
 
-        expiracaoJwt = DateTime.UtcNow.AddMinutes(1);
+        expiracaoJwt = DateTime.UtcNow.AddMinutes(5);
     }
 
     public AccessToken GerarAccessToken(Usuario usuario)
@@ -48,7 +48,8 @@ public class AccessTokenProvider
                 new SymmetricSecurityKey(chaveEmBytes),
                 SecurityAlgorithms.HmacSha256Signature
             ),
-            Expires = expiracaoJwt
+            Expires = expiracaoJwt,
+            NotBefore = DateTime.UtcNow
         };
 
         var token = tokenHandler.CreateToken(tokenDescriptor);

@@ -63,7 +63,8 @@ public static class IdentityConfig
                 ValidIssuer = "NoteKeeper",
                 ValidateAudience = true,
                 ValidateIssuer = true,
-                ValidateLifetime = true
+                ValidateLifetime = true,
+                ClockSkew = TimeSpan.FromSeconds(10)
             };
 
             options.Events = new JwtBearerEvents

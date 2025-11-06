@@ -32,14 +32,11 @@ public class Program
         var app = builder.Build();
 
         // Migrações do EntityFramework
-        if (app.Environment.IsDevelopment())
-        {
-            var scope = app.Services.CreateScope();
+        var scope = app.Services.CreateScope();
 
-            var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+        var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
 
-            dbContext.Database.Migrate();
-        }
+        dbContext.Database.Migrate();
 
         if (app.Environment.IsDevelopment())
         {

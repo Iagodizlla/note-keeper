@@ -3,10 +3,12 @@
 
 name: Build and deploy ASP.Net Core app to Azure Web App - note-keeper-api
 
-on:
+on: # Gatilho do workflow
   push:
     branches:
       - master
+    paths:
+      - 'server/**'
   workflow_dispatch:
 
 jobs:
@@ -24,10 +26,10 @@ jobs:
           dotnet-version: '8.x'
 
       - name: Build with dotnet
-        run: dotnet build --configuration Release
+        run: dotnet build ./server --configuration Release
 
       - name: dotnet publish
-        run: dotnet publish -c Release -o "${{env.DOTNET_ROOT}}/myapp"
+        run: dotnet publish ./server -c Release -o "${{env.DOTNET_ROOT}}/myapp"
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
@@ -51,9 +53,9 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_311F964B5B55433AA13243D6DF9FE66B }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_C86483B9E0FB4EDAA99F1E4C1CF8CEB1 }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_D8157903A916406FB32BE760BAC3C7D8 }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_8E687142A33C46DD8B1B66D1089585A5 }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_BE1CB88BE83F42799CF961220229455E }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_072FC66BD9BC495297FEDF6763D6337F }}
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp

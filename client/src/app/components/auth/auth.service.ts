@@ -6,7 +6,6 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 
 import { environment } from '../../../environments/environment';
-import { obterOpcoesHeaderAutorizacao } from '../../util/obter-opcoes-header-autorizacao';
 import { AccessTokenModel, LoginModel, RegistroModel } from './auth.models';
 
 @Injectable()
@@ -24,7 +23,7 @@ export class AuthService {
 
     if (!accessToken) return of(undefined);
 
-    const valido = accessToken.expiracao > new Date(); // DateTime.Now
+    const valido = new Date(accessToken.expiracao) > new Date(); // DateTime.Now
 
     if (!valido) return of(undefined);
 
@@ -65,11 +64,7 @@ export class AuthService {
     const urlCompleto = `${this.apiUrl}/sair`;
 
     return this.http
-      .post<null>(
-        urlCompleto,
-        {},
-        obterOpcoesHeaderAutorizacao(this.accessTokenSubject$.getValue()),
-      )
+      .post<null>(urlCompleto, {})
       .pipe(tap(() => this.accessTokenSubject$.next(undefined)));
   }
 

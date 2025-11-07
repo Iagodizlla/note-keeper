@@ -18,7 +18,8 @@ Para executar a aplicação na pasta `server`, é necessário incluir dentro do 
 {
   "SQL_CONNECTION_STRING": "Data Source=(LocalDB)\\MSSQLLocalDB;Initial Catalog=NoteKeeperDb;Integrated Security=True",
   "JWT_GENERATION_KEY": "SuaChaveSuperSecretaDe32Bytes",
-  "JWT_AUDIENCE_DOMAIN": "https://localhost:4200"
+  "JWT_AUDIENCE_DOMAIN": "https://localhost:4200",
+  "CORS_ALLOWED_ORIGINS": "https://localhost:4200"
 }
 ```
 A variável de ambiente pode se incluída de diversas maneiras, inclusive durante a execução do projeto pelo terminal. Para conveniência, utilizamos **UserSecrets**.
